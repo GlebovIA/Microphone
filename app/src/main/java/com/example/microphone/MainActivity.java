@@ -48,4 +48,10 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    public void recordStop(View v){
+        if(mediaRecorder != null){
+            mediaRecorder.stop();
+        }
+    }
 }
