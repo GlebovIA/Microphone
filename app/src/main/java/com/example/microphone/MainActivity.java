@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         fileName = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/record.3gpp";
     }
 
-    private  void releaseRecord(){
+    private  void releaseRecorder(){
         if(mediaRecorder != null){
             mediaRecorder.release();
             mediaRecorder = null;
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void recordStart(View v){
         try{
-            releaseRecord();
+            releaseRecorder();
             File outFile = new File(fileName);
             if(outFile.exists()){
                 outFile.delete();
@@ -78,5 +78,12 @@ public class MainActivity extends AppCompatActivity {
         if(mediaPlayer != null){
             mediaPlayer.stop();
         }
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        releasePlayer();
+        releaseRecorder();
     }
 }
